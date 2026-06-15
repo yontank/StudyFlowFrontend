@@ -2,7 +2,7 @@
   "name": "StudyFlow-Frontend devContainer",
   "image": "mcr.microsoft.com/devcontainers/typescript-node:22",
   "postCreateCommand": "npm ci",
-  "postStartCommand": "npm run dev -- --host &",
+  "postStartCommand": "npm run dev -- --host",
   "forwardPorts": [5173],
   "portsAttributes": {
     "5173": {
