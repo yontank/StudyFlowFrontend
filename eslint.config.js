@@ -31,7 +31,7 @@ export default defineConfig([
       reactHooks.configs.flat.recommended,
       reactRefresh.configs.vite,
       //tanstack query
-      tanstackQuery.configs.recommended,
+      tanstackQuery.configs['flat/recommended'],
 
       // vite recommendation for prod apps
       tseslint.configs.recommended,
@@ -94,6 +94,24 @@ export default defineConfig([
     files: ['package.json'],
     rules: {
       'package-json/require-author': 'error'
+    }
+  },
+
+  // Config files run in Node, so importing Node builtins is expected here.
+  {
+    files: ['*.config.{ts,js}'],
+    rules: {
+      'import-x/no-nodejs-modules': 'off'
+    }
+  },
+
+  // TanStack Router route files export a `Route` object alongside a local
+  // route component; HMR for these is handled by the router plugin, so the
+  // fast-refresh export rule doesn't apply.
+  {
+    files: ['src/routes/**/*.{ts,tsx}'],
+    rules: {
+      'react-refresh/only-export-components': 'off'
     }
   }
 ])
