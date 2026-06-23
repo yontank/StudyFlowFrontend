@@ -5,6 +5,7 @@ import reactRefresh from 'eslint-plugin-react-refresh'
 import tseslint from 'typescript-eslint'
 import eslintReact from '@eslint-react/eslint-plugin'
 import { importX } from 'eslint-plugin-import-x'
+import { createTypeScriptImportResolver } from 'eslint-import-resolver-typescript'
 import noSecrets from 'eslint-plugin-no-secrets'
 import { defineConfig, globalIgnores } from 'eslint/config'
 import json from '@eslint/json'
@@ -58,6 +59,14 @@ export default defineConfig([
         tsconfigRootDir: import.meta.dirname
       },
       globals: globals.browser
+    },
+    settings: {
+      'import-x/resolver-next': [
+        createTypeScriptImportResolver({
+          alwaysTryTypes: true,
+          project: './tsconfig.app.json'
+        })
+      ]
     },
     rules: {
       'import-x/no-dynamic-require': 'warn',
