@@ -12,6 +12,7 @@ import promise from 'eslint-plugin-promise'
 import packageJson from 'eslint-plugin-package-json'
 import regexp from 'eslint-plugin-regexp'
 import sonarjs from 'eslint-plugin-sonarjs'
+import tanstackQuery from '@tanstack/eslint-plugin-query'
 
 //NOTE: side-effect import: patches Linter.verify to upgrade all warnings to errors
 import 'eslint-plugin-only-error'
@@ -29,6 +30,8 @@ export default defineConfig([
       js.configs.recommended,
       reactHooks.configs.flat.recommended,
       reactRefresh.configs.vite,
+      //tanstack query
+      tanstackQuery.configs.recommended,
 
       // vite recommendation for prod apps
       tseslint.configs.recommended,
