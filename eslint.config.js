@@ -2,6 +2,7 @@ import js from '@eslint/js'
 import globals from 'globals'
 import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
+import eslintPluginTailwindcss from 'eslint-plugin-tailwindcss'
 import tseslint from 'typescript-eslint'
 import eslintReact from '@eslint-react/eslint-plugin'
 import { importX } from 'eslint-plugin-import-x'
@@ -14,6 +15,7 @@ import packageJson from 'eslint-plugin-package-json'
 import regexp from 'eslint-plugin-regexp'
 import sonarjs from 'eslint-plugin-sonarjs'
 import tanstackQuery from '@tanstack/eslint-plugin-query'
+import eslintPluginPaths from 'eslint-plugin-paths'
 
 //NOTE: side-effect import: patches Linter.verify to upgrade all warnings to errors
 import 'eslint-plugin-only-error'
@@ -25,7 +27,8 @@ export default defineConfig([
     plugins: {
       'import-x': importX,
       'no-secrets': noSecrets,
-      promise: promise
+      promise: promise,
+      paths: eslintPluginPaths
     },
     extends: [
       js.configs.recommended,
@@ -71,7 +74,8 @@ export default defineConfig([
     rules: {
       'import-x/no-dynamic-require': 'warn',
       'import-x/no-nodejs-modules': 'warn',
-      'no-secrets/no-secrets': 'error'
+      'no-secrets/no-secrets': 'error',
+      'paths/alias': 'error'
     }
   },
   {
@@ -121,6 +125,25 @@ export default defineConfig([
     files: ['src/routes/**/*.{ts,tsx}'],
     rules: {
       'react-refresh/only-export-components': 'off'
+    }
+  },
+  {
+    // 2. Optional: extend an existing config preset
+    extends: [eslintPluginTailwindcss.configs.recommended],
+    settings: {
+      // 3. Define the tailwindcss settings with the MANDATORY cssConfigPath
+      tailwindcss: {
+        cssConfigPath: './src/index.css'
+      }
+    }
+  },
+
+  // The `cn` helper forwards dynamic ClassValue args to clsx, so the
+  // tailwindcss classname rule can't statically validate them here.
+  {
+    files: ['src/lib/utils.ts'],
+    rules: {
+      'tailwindcss/no-custom-classname': 'off'
     }
   }
 ])
