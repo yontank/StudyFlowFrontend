@@ -1,7 +1,7 @@
 import { Field, FieldLabel } from '../ui/field'
 import { Input } from '../ui/input'
 
-export default function CourseInput() {
+export default function CourseAddForm() {
   return (
     <Field orientation='vertical'>
       <FieldLabel htmlFor='input-id' className='flex justify-center'>
