@@ -8,7 +8,7 @@ export function CollapsibleDemo() {
   const [isOpen, setIsOpen] = React.useState<boolean>(false)
 
   return (
-    <Collapsible open={isOpen} onOpenChange={setIsOpen} className='flex w-87.5 flex-col gap-2'>
+    <Collapsible open={isOpen} onOpenChange={setIsOpen} className='flex w-full flex-col gap-2'>
       <div className='flex items-center justify-between gap-4 px-4'>
         <h4 className='text-sm font-semibold'>2026</h4>
         <CollapsibleTrigger asChild>

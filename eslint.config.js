@@ -21,7 +21,7 @@ import eslintPluginPaths from 'eslint-plugin-paths'
 import 'eslint-plugin-only-error'
 
 export default defineConfig([
-  globalIgnores(['dist']),
+  globalIgnores(['dist', 'src/components/ui/']),
   {
     files: ['**/*.{ts,tsx}'],
     plugins: {

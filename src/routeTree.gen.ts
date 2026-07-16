@@ -9,12 +9,18 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as MaterialslistRouteImport } from './routes/materialslist'
 import { Route as ExamslistRouteImport } from './routes/examslist'
 import { Route as EpqsRouteImport } from './routes/epqs'
 import { Route as EpceRouteImport } from './routes/epce'
 import { Route as CoursesRouteImport } from './routes/courses'
 import { Route as CourseRouteImport } from './routes/course'
 
+const MaterialslistRoute = MaterialslistRouteImport.update({
+  id: '/materialslist',
+  path: '/materialslist',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ExamslistRoute = ExamslistRouteImport.update({
   id: '/examslist',
   path: '/examslist',
@@ -47,6 +53,7 @@ export interface FileRoutesByFullPath {
   '/epce': typeof EpceRoute
   '/epqs': typeof EpqsRoute
   '/examslist': typeof ExamslistRoute
+  '/materialslist': typeof MaterialslistRoute
 }
 export interface FileRoutesByTo {
   '/course': typeof CourseRoute
@@ -54,6 +61,7 @@ export interface FileRoutesByTo {
   '/epce': typeof EpceRoute
   '/epqs': typeof EpqsRoute
   '/examslist': typeof ExamslistRoute
+  '/materialslist': typeof MaterialslistRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,13 +70,33 @@ export interface FileRoutesById {
   '/epce': typeof EpceRoute
   '/epqs': typeof EpqsRoute
   '/examslist': typeof ExamslistRoute
+  '/materialslist': typeof MaterialslistRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/course' | '/courses' | '/epce' | '/epqs' | '/examslist'
+  fullPaths:
+    | '/course'
+    | '/courses'
+    | '/epce'
+    | '/epqs'
+    | '/examslist'
+    | '/materialslist'
   fileRoutesByTo: FileRoutesByTo
-  to: '/course' | '/courses' | '/epce' | '/epqs' | '/examslist'
-  id: '__root__' | '/course' | '/courses' | '/epce' | '/epqs' | '/examslist'
+  to:
+    | '/course'
+    | '/courses'
+    | '/epce'
+    | '/epqs'
+    | '/examslist'
+    | '/materialslist'
+  id:
+    | '__root__'
+    | '/course'
+    | '/courses'
+    | '/epce'
+    | '/epqs'
+    | '/examslist'
+    | '/materialslist'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -77,10 +105,18 @@ export interface RootRouteChildren {
   EpceRoute: typeof EpceRoute
   EpqsRoute: typeof EpqsRoute
   ExamslistRoute: typeof ExamslistRoute
+  MaterialslistRoute: typeof MaterialslistRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/materialslist': {
+      id: '/materialslist'
+      path: '/materialslist'
+      fullPath: '/materialslist'
+      preLoaderRoute: typeof MaterialslistRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/examslist': {
       id: '/examslist'
       path: '/examslist'
@@ -125,6 +161,7 @@ const rootRouteChildren: RootRouteChildren = {
   EpceRoute: EpceRoute,
   EpqsRoute: EpqsRoute,
   ExamslistRoute: ExamslistRoute,
+  MaterialslistRoute: MaterialslistRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
