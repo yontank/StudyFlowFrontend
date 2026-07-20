@@ -1,6 +1,7 @@
 import { PlusCircle } from 'lucide-react'
 import { Button } from '../ui/button'
 import type { ComponentProps } from 'react'
+import { useNavigate } from '@tanstack/react-router'
 
 export function CreateCourseButton(props: ComponentProps<typeof Button>) {
   return (
@@ -10,11 +11,22 @@ export function CreateCourseButton(props: ComponentProps<typeof Button>) {
   )
 }
 
-export function CoursesInfoLink() {
+interface CoursesInfoProps {
+  title: string
+  code: string
+  id: string
+}
+
+export function CoursesInfoLink({ title, code, id }: Readonly<CoursesInfoProps>) {
+  const navigate = useNavigate()
   return (
-    <Button className='flex h-20 w-40 cursor-pointer flex-col items-start justify-center gap-2' variant='outline'>
-      <h3> asdsadasd</h3>
-      <p>20213</p>
+    <Button
+      onClick={() => navigate({ to: `/course/${id}` })}
+      className='flex h-20 w-40 cursor-pointer flex-col items-start justify-center gap-2'
+      variant='outline'
+    >
+      <h3>{title}</h3>
+      <p>{code}</p>
     </Button>
   )
 }

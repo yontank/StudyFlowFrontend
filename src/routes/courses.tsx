@@ -9,6 +9,9 @@ import { useForm, Controller } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
 import { digitsOnly } from '@/lib/utils'
+import { useSuspenseQuery } from '@tanstack/react-query'
+import { getCoursesQueryOptions } from '@/queryOptions/CoursesQueryOptions'
+import { v4 } from 'uuid'
 export const Route = createFileRoute('/courses')({
   component: RouteComponent
 })
@@ -75,6 +78,9 @@ function AddCourseForm() {
 }
 
 function RouteComponent() {
+  const { data } = useSuspenseQuery(getCoursesQueryOptions())
+
+  const cards = data.map((e) => <CoursesInfoLink id={e.id} title={e.name} code={e.code} key={v4()} />)
   return (
     <div>
       <CourseInput />
@@ -82,8 +88,7 @@ function RouteComponent() {
         <DialogButton trigger={<CreateCourseButton />}>
           <AddCourseForm />
         </DialogButton>
-
-        <CoursesInfoLink />
+        {cards}
       </div>
     </div>
   )

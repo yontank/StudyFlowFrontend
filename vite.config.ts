@@ -24,6 +24,13 @@ export default defineConfig({
   },
   server: {
     strictPort: true,
-    port: 5173
+    port: 5173,
+    proxy: {
+      '/v1': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/v1/, '')
+      }
+    }
   }
 })

@@ -7,12 +7,15 @@ import ButtonDialog from '@/components/shared/ButtonDialog'
 import LoginForm from '@/components/auth/LoginForm'
 import SignupForm from '@/components/auth/SignupForm'
 import { DropdownMenuAvatar } from '@/components/shared/NavbarAvatar'
-
+import { useSuspenseQuery } from '@tanstack/react-query'
+import { getUserQueryOptions } from '@/queryOptions/UserQueryOptions'
 export const Route = createRootRoute({
   component: RootComponent
 })
 
 function RootComponent() {
+  const { data } = useSuspenseQuery(getUserQueryOptions())
+  console.log('user-data', data)
   return (
     <React.Fragment>
       <div className='mb-6 flex h-12 w-full items-center justify-between bg-green-300 px-4 shadow-lg'>
