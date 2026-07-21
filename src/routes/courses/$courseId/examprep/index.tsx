@@ -4,7 +4,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { ChevronsUpDown } from 'lucide-react'
 import React from 'react'
 
-export const Route = createFileRoute('/epce')({
+export const Route = createFileRoute('/courses/$courseId/examprep/')({
   component: RouteComponent
 })
 

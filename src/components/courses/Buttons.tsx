@@ -21,7 +21,7 @@ export function CoursesInfoLink({ title, code, id }: Readonly<CoursesInfoProps>)
   const navigate = useNavigate()
   return (
     <Button
-      onClick={() => navigate({ to: `/course/${id}` })}
+      onClick={() => navigate({ to: `/courses/${id}` })}
       className='flex h-20 w-40 cursor-pointer flex-col items-start justify-center gap-2'
       variant='outline'
     >

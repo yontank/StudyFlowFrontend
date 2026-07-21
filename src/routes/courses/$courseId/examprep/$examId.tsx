@@ -4,7 +4,7 @@ import { Pagination, PaginationContent, PaginationItem, PaginationLink } from '@
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Textarea } from '@/components/ui/textarea'
 
-export const Route = createFileRoute('/epqs')({
+export const Route = createFileRoute('/courses/$courseId/examprep/$examId')({
   component: RouteComponent
 })
 

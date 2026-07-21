@@ -12,7 +12,7 @@ import { digitsOnly } from '@/lib/utils'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { getCoursesQueryOptions } from '@/queryOptions/CoursesQueryOptions'
 import { v4 } from 'uuid'
-export const Route = createFileRoute('/courses')({
+export const Route = createFileRoute('/courses/')({
   component: RouteComponent
 })
 

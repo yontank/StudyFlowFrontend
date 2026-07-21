@@ -34,7 +34,7 @@ export function CollapsibleDemo() {
   )
 }
 
-export const Route = createFileRoute('/examslist')({
+export const Route = createFileRoute('/courses/$courseId/exams/')({
   component: RouteComponent
 })
 

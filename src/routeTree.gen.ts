@@ -9,159 +9,163 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as MaterialslistRouteImport } from './routes/materialslist'
-import { Route as ExamslistRouteImport } from './routes/examslist'
-import { Route as EpqsRouteImport } from './routes/epqs'
-import { Route as EpceRouteImport } from './routes/epce'
-import { Route as CoursesRouteImport } from './routes/courses'
-import { Route as CourseRouteImport } from './routes/course'
+import { Route as CoursesIndexRouteImport } from './routes/courses/index'
+import { Route as CoursesCourseIdIndexRouteImport } from './routes/courses/$courseId/index'
+import { Route as CoursesCourseIdMaterialsIndexRouteImport } from './routes/courses/$courseId/materials/index'
+import { Route as CoursesCourseIdExamsIndexRouteImport } from './routes/courses/$courseId/exams/index'
+import { Route as CoursesCourseIdExamprepIndexRouteImport } from './routes/courses/$courseId/examprep/index'
+import { Route as CoursesCourseIdExamprepExamIdRouteImport } from './routes/courses/$courseId/examprep/$examId'
 
-const MaterialslistRoute = MaterialslistRouteImport.update({
-  id: '/materialslist',
-  path: '/materialslist',
+const CoursesIndexRoute = CoursesIndexRouteImport.update({
+  id: '/courses/',
+  path: '/courses/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ExamslistRoute = ExamslistRouteImport.update({
-  id: '/examslist',
-  path: '/examslist',
+const CoursesCourseIdIndexRoute = CoursesCourseIdIndexRouteImport.update({
+  id: '/courses/$courseId/',
+  path: '/courses/$courseId/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const EpqsRoute = EpqsRouteImport.update({
-  id: '/epqs',
-  path: '/epqs',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const EpceRoute = EpceRouteImport.update({
-  id: '/epce',
-  path: '/epce',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CoursesRoute = CoursesRouteImport.update({
-  id: '/courses',
-  path: '/courses',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CourseRoute = CourseRouteImport.update({
-  id: '/course',
-  path: '/course',
-  getParentRoute: () => rootRouteImport,
-} as any)
+const CoursesCourseIdMaterialsIndexRoute =
+  CoursesCourseIdMaterialsIndexRouteImport.update({
+    id: '/courses/$courseId/materials/',
+    path: '/courses/$courseId/materials/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const CoursesCourseIdExamsIndexRoute =
+  CoursesCourseIdExamsIndexRouteImport.update({
+    id: '/courses/$courseId/exams/',
+    path: '/courses/$courseId/exams/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const CoursesCourseIdExamprepIndexRoute =
+  CoursesCourseIdExamprepIndexRouteImport.update({
+    id: '/courses/$courseId/examprep/',
+    path: '/courses/$courseId/examprep/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const CoursesCourseIdExamprepExamIdRoute =
+  CoursesCourseIdExamprepExamIdRouteImport.update({
+    id: '/courses/$courseId/examprep/$examId',
+    path: '/courses/$courseId/examprep/$examId',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
-  '/course': typeof CourseRoute
-  '/courses': typeof CoursesRoute
-  '/epce': typeof EpceRoute
-  '/epqs': typeof EpqsRoute
-  '/examslist': typeof ExamslistRoute
-  '/materialslist': typeof MaterialslistRoute
+  '/courses/': typeof CoursesIndexRoute
+  '/courses/$courseId/': typeof CoursesCourseIdIndexRoute
+  '/courses/$courseId/examprep/$examId': typeof CoursesCourseIdExamprepExamIdRoute
+  '/courses/$courseId/examprep/': typeof CoursesCourseIdExamprepIndexRoute
+  '/courses/$courseId/exams/': typeof CoursesCourseIdExamsIndexRoute
+  '/courses/$courseId/materials/': typeof CoursesCourseIdMaterialsIndexRoute
 }
 export interface FileRoutesByTo {
-  '/course': typeof CourseRoute
-  '/courses': typeof CoursesRoute
-  '/epce': typeof EpceRoute
-  '/epqs': typeof EpqsRoute
-  '/examslist': typeof ExamslistRoute
-  '/materialslist': typeof MaterialslistRoute
+  '/courses': typeof CoursesIndexRoute
+  '/courses/$courseId': typeof CoursesCourseIdIndexRoute
+  '/courses/$courseId/examprep/$examId': typeof CoursesCourseIdExamprepExamIdRoute
+  '/courses/$courseId/examprep': typeof CoursesCourseIdExamprepIndexRoute
+  '/courses/$courseId/exams': typeof CoursesCourseIdExamsIndexRoute
+  '/courses/$courseId/materials': typeof CoursesCourseIdMaterialsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/course': typeof CourseRoute
-  '/courses': typeof CoursesRoute
-  '/epce': typeof EpceRoute
-  '/epqs': typeof EpqsRoute
-  '/examslist': typeof ExamslistRoute
-  '/materialslist': typeof MaterialslistRoute
+  '/courses/': typeof CoursesIndexRoute
+  '/courses/$courseId/': typeof CoursesCourseIdIndexRoute
+  '/courses/$courseId/examprep/$examId': typeof CoursesCourseIdExamprepExamIdRoute
+  '/courses/$courseId/examprep/': typeof CoursesCourseIdExamprepIndexRoute
+  '/courses/$courseId/exams/': typeof CoursesCourseIdExamsIndexRoute
+  '/courses/$courseId/materials/': typeof CoursesCourseIdMaterialsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    | '/course'
-    | '/courses'
-    | '/epce'
-    | '/epqs'
-    | '/examslist'
-    | '/materialslist'
+    | '/courses/'
+    | '/courses/$courseId/'
+    | '/courses/$courseId/examprep/$examId'
+    | '/courses/$courseId/examprep/'
+    | '/courses/$courseId/exams/'
+    | '/courses/$courseId/materials/'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | '/course'
     | '/courses'
-    | '/epce'
-    | '/epqs'
-    | '/examslist'
-    | '/materialslist'
+    | '/courses/$courseId'
+    | '/courses/$courseId/examprep/$examId'
+    | '/courses/$courseId/examprep'
+    | '/courses/$courseId/exams'
+    | '/courses/$courseId/materials'
   id:
     | '__root__'
-    | '/course'
-    | '/courses'
-    | '/epce'
-    | '/epqs'
-    | '/examslist'
-    | '/materialslist'
+    | '/courses/'
+    | '/courses/$courseId/'
+    | '/courses/$courseId/examprep/$examId'
+    | '/courses/$courseId/examprep/'
+    | '/courses/$courseId/exams/'
+    | '/courses/$courseId/materials/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  CourseRoute: typeof CourseRoute
-  CoursesRoute: typeof CoursesRoute
-  EpceRoute: typeof EpceRoute
-  EpqsRoute: typeof EpqsRoute
-  ExamslistRoute: typeof ExamslistRoute
-  MaterialslistRoute: typeof MaterialslistRoute
+  CoursesIndexRoute: typeof CoursesIndexRoute
+  CoursesCourseIdIndexRoute: typeof CoursesCourseIdIndexRoute
+  CoursesCourseIdExamprepExamIdRoute: typeof CoursesCourseIdExamprepExamIdRoute
+  CoursesCourseIdExamprepIndexRoute: typeof CoursesCourseIdExamprepIndexRoute
+  CoursesCourseIdExamsIndexRoute: typeof CoursesCourseIdExamsIndexRoute
+  CoursesCourseIdMaterialsIndexRoute: typeof CoursesCourseIdMaterialsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/materialslist': {
-      id: '/materialslist'
-      path: '/materialslist'
-      fullPath: '/materialslist'
-      preLoaderRoute: typeof MaterialslistRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/examslist': {
-      id: '/examslist'
-      path: '/examslist'
-      fullPath: '/examslist'
-      preLoaderRoute: typeof ExamslistRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/epqs': {
-      id: '/epqs'
-      path: '/epqs'
-      fullPath: '/epqs'
-      preLoaderRoute: typeof EpqsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/epce': {
-      id: '/epce'
-      path: '/epce'
-      fullPath: '/epce'
-      preLoaderRoute: typeof EpceRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/courses': {
-      id: '/courses'
+    '/courses/': {
+      id: '/courses/'
       path: '/courses'
-      fullPath: '/courses'
-      preLoaderRoute: typeof CoursesRouteImport
+      fullPath: '/courses/'
+      preLoaderRoute: typeof CoursesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/course': {
-      id: '/course'
-      path: '/course'
-      fullPath: '/course'
-      preLoaderRoute: typeof CourseRouteImport
+    '/courses/$courseId/': {
+      id: '/courses/$courseId/'
+      path: '/courses/$courseId'
+      fullPath: '/courses/$courseId/'
+      preLoaderRoute: typeof CoursesCourseIdIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/courses/$courseId/materials/': {
+      id: '/courses/$courseId/materials/'
+      path: '/courses/$courseId/materials'
+      fullPath: '/courses/$courseId/materials/'
+      preLoaderRoute: typeof CoursesCourseIdMaterialsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/courses/$courseId/exams/': {
+      id: '/courses/$courseId/exams/'
+      path: '/courses/$courseId/exams'
+      fullPath: '/courses/$courseId/exams/'
+      preLoaderRoute: typeof CoursesCourseIdExamsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/courses/$courseId/examprep/': {
+      id: '/courses/$courseId/examprep/'
+      path: '/courses/$courseId/examprep'
+      fullPath: '/courses/$courseId/examprep/'
+      preLoaderRoute: typeof CoursesCourseIdExamprepIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/courses/$courseId/examprep/$examId': {
+      id: '/courses/$courseId/examprep/$examId'
+      path: '/courses/$courseId/examprep/$examId'
+      fullPath: '/courses/$courseId/examprep/$examId'
+      preLoaderRoute: typeof CoursesCourseIdExamprepExamIdRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  CourseRoute: CourseRoute,
-  CoursesRoute: CoursesRoute,
-  EpceRoute: EpceRoute,
-  EpqsRoute: EpqsRoute,
-  ExamslistRoute: ExamslistRoute,
-  MaterialslistRoute: MaterialslistRoute,
+  CoursesIndexRoute: CoursesIndexRoute,
+  CoursesCourseIdIndexRoute: CoursesCourseIdIndexRoute,
+  CoursesCourseIdExamprepExamIdRoute: CoursesCourseIdExamprepExamIdRoute,
+  CoursesCourseIdExamprepIndexRoute: CoursesCourseIdExamprepIndexRoute,
+  CoursesCourseIdExamsIndexRoute: CoursesCourseIdExamsIndexRoute,
+  CoursesCourseIdMaterialsIndexRoute: CoursesCourseIdMaterialsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

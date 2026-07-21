@@ -2,11 +2,11 @@ import ExamList from '@/components/courses/ExamList'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, Link, useParams } from '@tanstack/react-router'
 import { PlusIcon, TrashIcon } from 'lucide-react'
 import { v4 } from 'uuid'
 
-export const Route = createFileRoute('/course')({
+export const Route = createFileRoute('/courses/$courseId/')({
   component: RouteComponent
 })
 
@@ -67,6 +67,8 @@ function MaterialCard() {
 }
 
 function RouteComponent() {
+  const { courseId } = useParams({ from: '/courses/$courseId/' })
+
   return (
     <div>
       <h1 className='mb-6 text-center text-2xl font-bold'>Linear Algebra 1</h1>
@@ -78,9 +80,21 @@ function RouteComponent() {
             <CardTitle>Actions</CardTitle>
           </CardHeader>
           <CardContent className='flex w-fit flex-col gap-2'>
-            <Button>View Exams</Button>
-            <Button>View Materials</Button>
-            <Button>Practice Exam</Button>
+            <Button>
+              <Link to={'/courses/$courseId/exams'} params={{ courseId }}>
+                View Exams
+              </Link>
+            </Button>
+            <Button>
+              <Link to={'/courses/$courseId/materials'} params={{ courseId }}>
+                View Materials
+              </Link>
+            </Button>
+            <Button>
+              <Link to={'/courses/$courseId/materials'} params={{ courseId }}>
+                Practice Exam
+              </Link>
+            </Button>
             <Button disabled>Practice Topics</Button>
           </CardContent>
         </Card>
